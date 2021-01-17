@@ -1,2 +1,3 @@
-# EzSTM32
-A simple Makefile based example for STM32F4-Discovery board
+# Directories
+* my-project contains your application
+* my-common-code contains something shared.
