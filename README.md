@@ -1,7 +1,7 @@
 
 # Clone
 
-git clone --recurse-submodules https://github.com/libopencm3/libopencm3-template.git your-project
+git clone --recurse-submodules https://github.com/FTOD-LAB/EzSTM32.git
 
 If you have an older git, or got ahead of yourself and skipped the 
 ```
@@ -12,6 +12,7 @@ you can fix things by running
 git submodule update --init
 ``` 
 (This is only needed once)
+
 
 # Directories
 * my-project contains your application
