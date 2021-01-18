@@ -1,7 +1,9 @@
 
 # Clone
 
+```
 git clone --recurse-submodules https://github.com/FTOD-LAB/EzSTM32.git
+```
 
 If you have an older git, or got ahead of yourself and skipped the 
 ```
