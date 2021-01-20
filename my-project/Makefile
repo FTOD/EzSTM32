@@ -2,12 +2,13 @@ PROJECT = awesomesauce
 BUILD_DIR = bin
 
 SHARED_DIR = ../my-common-code
-CFILES = my-project.c
-CFILES += api.c
-AFILES += api-asm.S
+CFILES = main.c
 
-# TODO - you will need to edit these two lines!
+#CFILES += api.c
+#AFILES += api-asm.S
+
 DEVICE=stm32f407vgt6
+# Not using OpenOCD so it whould be useless
 OOCD_FILE = board/stm32f4discovery.cfg
 
 # You shouldn't have to edit anything below here.
