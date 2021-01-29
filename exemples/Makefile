@@ -1,9 +1,9 @@
 PROJECT = awesomesauce
 BUILD_DIR = bin
 
-SHARED_DIR = ../my-common-code
-CFILES = main_pwm.c
-CFILES += pwm.c
+SHARED_DIR = ../lib
+CXXFILES = main.c
+CXXFILES += pwm.c
 #AFILES += api-asm.S
 
 DEVICE=stm32f407vgt6

@@ -8,6 +8,7 @@ static void clock_setup(void)
 
 	/* Enable GPIOD clock. */
 	rcc_periph_clock_enable(RCC_GPIOD);
+	rcc_periph_clock_enable(RCC_GPIOC);
 
 }
 
@@ -16,6 +17,9 @@ static void gpio_setup(void)
 	/* Set GPIO12-15 (in GPIO port D) to 'output push-pull'. */
 	gpio_mode_setup(GPIOD, GPIO_MODE_OUTPUT,
 			GPIO_PUPD_NONE, GPIO12 | GPIO13 | GPIO14 | GPIO15);
+	gpio_mode_setup(GPIOC, GPIO_MODE_OUTPUT,
+			GPIO_PUPD_NONE, GPIO8 | GPIO9 );
+
 
 }
 
@@ -28,6 +32,8 @@ int main(void)
 
 	/* Set two LEDs for wigwag effect when toggling. */
 	gpio_set(GPIOD, GPIO12 | GPIO14);
+	//
+	gpio_set(GPIOC, GPIO8 | GPIO9);
 
 	/* Blink the LEDs (PD12, PD13, PD14 and PD15) on the board. */
 	while (1) {
