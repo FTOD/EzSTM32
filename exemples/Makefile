@@ -1,5 +1,5 @@
 PROJECT = awesomesauce
-BUILD_DIR = bin
+BUILD_DIR = build
 
 SHARED_DIR = ../lib
 CXXFILES = main.cxx itm.cxx
