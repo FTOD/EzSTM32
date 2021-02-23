@@ -1,50 +1,58 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
+#include <itm.h>
+#include "IO_F4_Discovery.h"
 
-/* Set STM32 to 168 MHz. */
-static void clock_setup(void)
-{
+
+int main() {
+    int i;
+
+    // set power
+	// ZHEN : USE rcc_periph_clock_enable(RCC_GPIOD), checkout rcc_common_all
+	// ZHEN : it is nothing to do with the power anyway
+    //RCC_AHB1ENR |= 1 << ID_GPIOD;
+	
+	// RCC clock setup
 	rcc_clock_setup_pll(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_168MHZ]);
-
 	/* Enable GPIOD clock. */
 	rcc_periph_clock_enable(RCC_GPIOD);
-	rcc_periph_clock_enable(RCC_GPIOC);
 
-};
 
-static void gpio_setup(void)
-{
-	/* Set GPIO12-15 (in GPIO port D) to 'output push-pull'. */
+
+    // initialize the LEDs
+	// ZHEN : USE gpio_mode_setup 
+    //GPIO_MODER_SET(LED_ORANGE, GPIO_MODER_OUT);
+    //GPIO_MODER_SET(LED_BLUE, GPIO_MODER_OUT);
+    //GPIO_MODER_SET(LED_RED, GPIO_MODER_OUT);
+    //GPIO_MODER_SET(LED_GREEN, GPIO_MODER_OUT);
+
+
 	gpio_mode_setup(GPIOD, GPIO_MODE_OUTPUT,
-			GPIO_PUPD_NONE, GPIO12 | GPIO13 | GPIO14 | GPIO15);
-	gpio_mode_setup(GPIOC, GPIO_MODE_OUTPUT,
-			GPIO_PUPD_NONE, GPIO8 | GPIO9 );
+						GPIO_PUPD_NONE, GPIO12 | GPIO13 | GPIO14 | GPIO15);
 
 
-}
+    // endless loop
+    while(1) {
 
-int main(void)
-{
-	int i;
+        //GPIO_BSRR_SET(LED_ORANGE);
+        //GPIO_BSRR_SET(LED_RED);
+        //GPIO_BSRR_RESET(LED_BLUE);
+        //GPIO_BSRR_RESET(LED_GREEN);
+		gpio_set(GPIOD, GPIO12|GPIO14);
+		gpio_clear(GPIOD, GPIO13|GPIO15);
+        ITM_putc('A');
 
-	clock_setup();
-	gpio_setup();
+        for (i = 0; i < 6000000; i++)
+            __asm__("nop");
 
-	/* Set two LEDs for wigwag effect when toggling. */
-	gpio_set(GPIOD, GPIO12 | GPIO14);
-	//
-	gpio_set(GPIOC, GPIO8 | GPIO9);
-
-	/* Blink the LEDs (PD12, PD13, PD14 and PD15) on the board. */
-	while (1) {
-		/* Toggle LEDs. */
+        //GPIO_BSRR_RESET(LED_ORANGE);
+        //GPIO_BSRR_RESET(LED_RED);
+        //GPIO_BSRR_SET(LED_BLUE);
+        //GPIO_BSRR_SET(LED_GREEN);
 		gpio_toggle(GPIOD, GPIO12 | GPIO13 | GPIO14 | GPIO15);
-		for (i = 0; i < 6000000; i++) { /* Wait a bit. */
-			__asm__("nop");
-		}
+		ITM_puts("Caca\n");
 
-	}
-
-	return 0;
-
+        for (i = 0; i < 6000000; i++)
+            __asm__("nop");
+    }
 }

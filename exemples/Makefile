@@ -2,12 +2,12 @@ PROJECT = awesomesauce
 BUILD_DIR = bin
 
 SHARED_DIR = ../lib
-CXXFILES = main.cxx
+CXXFILES = main.cxx itm.cxx
 CFILES += pwm.c
 #AFILES += api-asm.S
 
 DEVICE=stm32f407vgt6
-OOCD_FILE = board/stm32f4discovery.cfg
+OOCD_FILE = ../stm32f4discovery.cfg
 
 # You shouldn't have to edit anything below here.
 VPATH += $(SHARED_DIR)

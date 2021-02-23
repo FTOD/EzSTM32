@@ -1,5 +1,7 @@
-#include <stdint.h>
+#ifndef PWM_H
+#define PWM_H
 
+#include <stdint.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/timer.h>
@@ -190,4 +192,6 @@ void pwm_start(void)
     timer_enable_counter(TIM4);
 
 }
+
+#endif //PWM_H
 /* End of file */
