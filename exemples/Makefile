@@ -3,7 +3,7 @@ BUILD_DIR = build
 
 SHARED_DIR = ../lib
 CXXFILES = main.cxx itm.cxx
-CFILES += pwm.c
+CFILES += pwm.c printf.c
 #AFILES += api-asm.S
 
 DEVICE=stm32f407vgt6

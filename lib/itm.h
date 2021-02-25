@@ -12,22 +12,23 @@
 #define ITM_TRACE_EN          	*((volatile uint32_t*) 0xE0000E00 )
 #define ITM_TRACE_EN_PORT0		(1 << 0)
 
+void ITM_putc(uint8_t ch);
+void ITM_puts(const char *s);
 
 class ITM{
 	public:
-		static int printf_(const char* format, ...)	{
+		static int printf(const char* format, ...)	{
 			va_list va;
 			va_start(va, format);
 			int ret = vprintf(format, va);
 			va_end(va);
 			return ret;
 		}
+		static int println(const char* s){
+			int ret = printf(s);
+			_putchar('\n');
+			return ret;
+		}
 };
 
-void ITM_putc(uint8_t ch);
-void ITM_puts(const char *s);
-
-inline void _putchar(char character){
-	ITM_putc(character);
-}
 #endif //ITM_H

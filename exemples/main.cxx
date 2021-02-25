@@ -40,7 +40,7 @@ int main() {
         //GPIO_BSRR_RESET(LED_GREEN);
 		gpio_set(GPIOD, GPIO12|GPIO14);
 		gpio_clear(GPIOD, GPIO13|GPIO15);
-        ITM_putc('A');
+		ITM::println("Hello!");
 
         for (i = 0; i < 6000000; i++)
             __asm__("nop");
@@ -50,7 +50,7 @@ int main() {
         //GPIO_BSRR_SET(LED_BLUE);
         //GPIO_BSRR_SET(LED_GREEN);
 		gpio_toggle(GPIOD, GPIO12 | GPIO13 | GPIO14 | GPIO15);
-		ITM_puts("Caca\n");
+		ITM::println("Caca!");
 
         for (i = 0; i < 6000000; i++)
             __asm__("nop");

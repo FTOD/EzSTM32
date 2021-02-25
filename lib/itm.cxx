@@ -28,3 +28,6 @@ void ITM_puts(const char *s) {
 		ITM_putc(*s++);
 }
 
+void _putchar(char character){
+	ITM_putc(character);
+};
